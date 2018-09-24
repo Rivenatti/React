@@ -1,0 +1,26 @@
+.posts {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.post__card {
+  background-color: #aaa;
+  margin: 1rem 0;
+  border: 1px solid black;
+  padding: 0.8rem;
+}
+
+.post__title {
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  width: 100%;
+  text-transform: capitalize;
+}
+
+.post__body {
+  margin-top: 1rem;
+  font-size: 15px;
+  text-align: justify;
+  width: 100%;
+}
