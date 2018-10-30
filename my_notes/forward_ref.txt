@@ -1,0 +1,11 @@
+Ref forwarding is a feature that lets some components take a ref they receive, and pass it further down to a child.
+
+const ButtonElement = React.forwardRef((props, ref) => (
+  <button ref={ref} className="CustomButton">
+    {props.children}
+  </button>
+));
+
+// Create ref to the DOM button:
+const ref = React.createRef();
+<ButtonElement ref={ref}>{'Forward Ref'}</ButtonElement>

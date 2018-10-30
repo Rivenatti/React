@@ -1,0 +1,22 @@
+To upgrade project to version 2.0.3 use:
+npm install --save --save-exact react-script@2.0.3
+
+What's new:
+- Babel 7+
+- Node 9.10.1 +
+- Webpack 4 +
+- Jest 23 +
+- Ability to use parent elements (use <> </> to wrap elements)
+- SASS support - rename .css to .scss (needs node package installed: npm i node-sass --save)
+- CSS Modules doesn't need config anymore
+- Smaller CSS Bundles
+- PostCSS added
+- SVG as Component (importing svg_name.js)
+- New Boiler Plate
+- Caching offline assets and better service workers job with Google's Workbox
+- Easy caching of assets
+- Easier to build Progressige Web Applications
+- Configure own proxy with the Express app instance
+- Add 'http-proxy-middleware' and create 'src/setupProxy.js'
+- Yarn Plug-n-Play mode
+- PropTypes definitions are automatically stripped out of production builds
