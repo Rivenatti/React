@@ -1,12 +1,18 @@
-import React from "react";
+import React, { Fragment } from "react";
+import Form from "./Form";
 import {
   Grid,
   Paper,
   Typography,
   List,
   ListItem,
-  ListItemText
+  ListItemText,
+  ListItemSecondaryAction,
+  IconButton
 } from "@material-ui/core";
+
+import Edit from "@material-ui/icons/Edit";
+import Delete from "@material-ui/icons/Delete";
 
 const styles = {
   Paper: {
@@ -19,14 +25,29 @@ const styles = {
 };
 
 const exercises = props => {
-  const { exercises } = props;
+  const {
+    exercise,
+    exercises,
+    category,
+    muscles,
+    editMode,
+    onSelect,
+    exercise: {
+      id,
+      title = "Welcome",
+      description = "Select an exercise from the left ListeningStateChangedEvent."
+    },
+    onSelectEdit,
+    onEdit,
+    onDelete
+  } = props;
   return (
     <Grid container>
       <Grid item sm>
         <Paper style={styles.Paper}>
-          {exercises.map(([group, exercises]) => {
-            return (
-              <>
+          {exercises.map(([group, exercises]) =>
+            !category || category === group ? (
+              <Fragment key={id}>
                 <Typography
                   variant="headline"
                   style={{ textTransform: "capitalize" }}
@@ -34,26 +55,41 @@ const exercises = props => {
                   {group}
                 </Typography>
                 <List component="ul">
-                  {exercises.map(({ title }) => (
-                    <ListItem button>
+                  {exercises.map(({ id, title }) => (
+                    <ListItem button key={id} onClick={() => onSelect(id)}>
                       <ListItemText primary={title} />
+                      <ListItemSecondaryAction>
+                        <IconButton onClick={() => onSelectEdit(id)}>
+                          <Edit />
+                        </IconButton>
+
+                        <IconButton onClick={() => onDelete(id)}>
+                          <Delete />
+                        </IconButton>
+                      </ListItemSecondaryAction>
                     </ListItem>
                   ))}
                 </List>
-              </>
-            );
-          })}
+              </Fragment>
+            ) : null
+          )}
         </Paper>
       </Grid>
       <Grid item sm>
         <Paper style={styles.Paper}>
-          <Typography variant="display1">Welcome:</Typography>
-          <Typography
-            variant="subheading"
-            style={{ marginTop: 20, height: 500 }}
-          >
-            Select an exercise from the left ListeningStateChangedEvent.
-          </Typography>
+          {editMode ? (
+            <Form exercise={exercise} muscles={muscles} onSubmit={onEdit} />
+          ) : (
+            <Fragment>
+              <Typography variant="display1">{title}</Typography>
+              <Typography
+                variant="subheading"
+                style={{ marginTop: 20, height: 500 }}
+              >
+                {description}
+              </Typography>
+            </Fragment>
+          )}
         </Paper>
       </Grid>
     </Grid>
