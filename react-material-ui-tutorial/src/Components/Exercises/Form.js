@@ -42,15 +42,14 @@ class Form extends Component {
       ...this.state
     });
 
-    this.setState({
-      open: false,
-      exercise: {
-        title: "",
-        description: "",
-        muscles: ""
-      }
-    });
+    this.setState(this.getInitialState);
   };
+
+  componentWillReceiveProps({ exercise }) {
+    this.setState({
+      ...exercise
+    });
+  }
 
   render() {
     const { title, description, muscles } = this.state,
@@ -87,7 +86,7 @@ class Form extends Component {
         />
         <br />
         <Button color="primary" variant="raised" onClick={this.handleSubmit}>
-          Create
+          {this.props.exercise ? "Edit" : "Create"}
         </Button>
       </form>
     );

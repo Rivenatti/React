@@ -43,7 +43,7 @@ const exercises = props => {
   } = props;
   return (
     <Grid container>
-      <Grid item sm>
+      <Grid item xs={12} sm={6}>
         <Paper style={styles.Paper}>
           {exercises.map(([group, exercises]) =>
             !category || category === group ? (
@@ -75,7 +75,7 @@ const exercises = props => {
           )}
         </Paper>
       </Grid>
-      <Grid item sm>
+      <Grid item xs={12} sm={6}>
         <Paper style={styles.Paper}>
           {editMode ? (
             <Form exercise={exercise} muscles={muscles} onSubmit={onEdit} />
