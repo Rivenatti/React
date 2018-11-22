@@ -31,10 +31,15 @@ class CreateDialog extends Component {
 
     return (
       <Fragment>
-        <Button variant="fab" onClick={this.handleToggle} mini>
+        <Button
+          variant="fab"
+          onClick={this.handleToggle}
+          mini
+          color={"secondary"}
+        >
           <AddIcon />
         </Button>
-        <Dialog open={open} onClose={this.handleToggle}>
+        <Dialog open={open} onClose={this.handleToggle} fullWidth maxWidth="sm">
           <DialogTitle>Create a new exercise</DialogTitle>
           <DialogContent>
             <DialogContentText>Fill out the form below.</DialogContentText>

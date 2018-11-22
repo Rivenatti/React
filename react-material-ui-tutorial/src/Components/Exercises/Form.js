@@ -7,13 +7,6 @@ import {
   MenuItem,
   Button
 } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
-
-const styles = theme => ({
-  FormControl: {
-    width: 300
-  }
-});
 
 class Form extends Component {
   state = this.getInitialState();
@@ -53,7 +46,7 @@ class Form extends Component {
 
   render() {
     const { title, description, muscles } = this.state,
-      { classes, muscles: categories } = this.props;
+      { muscles: categories } = this.props;
     return (
       <form>
         <TextField
@@ -61,10 +54,10 @@ class Form extends Component {
           value={title}
           onChange={this.handleChange("title")}
           margin="normal"
-          className={classes.FormControl}
+          fullWidth
         />
         <br />
-        <FormControl className={classes.FormControl}>
+        <FormControl fullWidth>
           <InputLabel htmlFor="muscles">Muscles</InputLabel>
           <Select value={muscles} onChange={this.handleChange("muscles")}>
             {categories.map(category => (
@@ -82,10 +75,15 @@ class Form extends Component {
           margin="normal"
           multiline
           rows="4"
-          className={classes.FormControl}
+          fullWidth
         />
         <br />
-        <Button color="primary" variant="raised" onClick={this.handleSubmit}>
+        <Button
+          color="primary"
+          variant="raised"
+          onClick={this.handleSubmit}
+          disabled={!title || !muscles}
+        >
           {this.props.exercise ? "Edit" : "Create"}
         </Button>
       </form>
@@ -93,4 +91,4 @@ class Form extends Component {
   }
 }
 
-export default withStyles(styles)(Form);
+export default Form;
